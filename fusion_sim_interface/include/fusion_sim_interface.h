@@ -15,22 +15,22 @@
 
 class FusionSimInterface
 {
-    public:
-        FusionSimInterface(ros::NodeHandle& nh);
-        ~FusionSimInterface() = default;
+public:
+  FusionSimInterface(ros::NodeHandle& nh);
+  ~FusionSimInterface() = default;
 
-        void lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
-        void cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
-        
-    private:
-        ros::Publisher lidar_pub_;
-        ros::Publisher camera_pub_;
+  void lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
+  void cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
+  
+private:
+  ros::Publisher lidar_pub_;
+  ros::Publisher camera_pub_;
 
-        ros::Subscriber lidar_sub_;
-        ros::Subscriber camera_sub_;
+  ros::Subscriber lidar_sub_;
+  ros::Subscriber camera_sub_;
 
-    #ifdef SGT_DEBUG_STATE
-        ros::Publisher lidar_vis_debug_pub_;
-        ros::Publisher camera_vis_debug_pub_;
-    #endif    
+#ifdef SGT_DEBUG_STATE
+  ros::Publisher lidar_vis_debug_pub_;
+  ros::Publisher camera_vis_debug_pub_;
+#endif    
 };

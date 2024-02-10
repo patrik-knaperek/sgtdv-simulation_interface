@@ -7,12 +7,12 @@
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "fusionSimInterface");
-    ros::NodeHandle handle;
-    
-    FusionSimInterface sim_interface(handle);
-    
-    ros::spin();
+  ros::init(argc, argv, "fusionSimInterface");
+  ros::NodeHandle handle;
+  
+  FusionSimInterface sim_interface(handle);
+  
+  ros::spin();
 
-    return 0;
+  return 0;
 }

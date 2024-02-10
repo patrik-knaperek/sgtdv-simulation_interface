@@ -27,5 +27,5 @@ include_directories(
 add_executable(${PROJECT_NAME} src/fusion_sim_interface.cpp src/fusion_sim_interface_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}
-   ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES}
  )
