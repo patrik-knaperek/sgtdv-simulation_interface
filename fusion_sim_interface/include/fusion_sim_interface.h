@@ -19,8 +19,8 @@ class FusionSimInterface
         FusionSimInterface(ros::NodeHandle& nh);
         ~FusionSimInterface() = default;
 
-        void lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg);
-        void cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg);
+        void lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
+        void cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const;
         
     private:
         ros::Publisher lidar_pub_;
