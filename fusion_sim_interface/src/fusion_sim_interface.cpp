@@ -5,14 +5,19 @@
 
 #include "../include/fusion_sim_interface.h"
 
-FusionSimInterface::FusionSimInterface()
-{
+FusionSimInterface::FusionSimInterface(ros::NodeHandle& nh) :
+    /* ROS interface init */
+    camera_pub_(nh.advertise<sgtdv_msgs::ConeStampedArr>("camera_cones", 1)),
+    lidar_pub_(nh.advertise<sgtdv_msgs::Point2DStampedArr>("lidar_cones", 1)),
     
-}
+    camera_sub_(nh.subscribe("fssim/camera/cones", 1, &FusionSimInterface::cameraCallback, this)),
+    lidar_sub_(nh.subscribe("fssim/lidar/cones", 1, &FusionSimInterface::lidarCallback, this))
 
-FusionSimInterface::~FusionSimInterface()
-{
-
+#ifdef SGT_DEBUG_STATE
+    , lidar_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("lidar_cone_detection_debug_state", 2))
+    , camera_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("camera_cone_detection_debug_state", 2))
+#endif
+{   
 }
 
 void FusionSimInterface::lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg)

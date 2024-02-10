@@ -16,24 +16,9 @@
 class FusionSimInterface
 {
     public:
-        FusionSimInterface();
-        ~FusionSimInterface();
+        FusionSimInterface(ros::NodeHandle& nh);
+        ~FusionSimInterface() = default;
 
-        // Setters
-        void setPublishers(ros::Publisher cameraPub, ros::Publisher lidarPub)
-        {
-            this->camera_pub_ = cameraPub;
-            this->lidar_pub_ = lidarPub;
-        };
-
-    #ifdef SGT_DEBUG_STATE
-        void SetVisDebugPublishers(ros::Publisher lidarVisDebugPublisher, ros::Publisher cameraVisDebugPublisher)
-        { 
-            lidar_vis_debug_pub_ = lidarVisDebugPublisher;
-            camera_vis_debug_pub_ = cameraVisDebugPublisher;
-        };
-    #endif
-        
         void lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg);
         void cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg);
         
