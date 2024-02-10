@@ -1,4 +1,4 @@
-# **SLAMSimInterface package**
+# **SLAMSimulationInterface package**
 
 ___
 
@@ -29,7 +29,7 @@ If only global navigation is being tested, set the `map_ready_` and `loop_closur
 $ cd ${SGT_ROOT}/ros_implementation
 $ catkin clean
 $ source ${FSD_ROOT}/devel/setup.bash
-$ catkin build slam_sim_interface
+$ catkin build slam_si
 ```
 * compile fith other packages for running with FSSIM
 ```sh
@@ -46,7 +46,7 @@ $ roslaunch fssim_interface fssim.launch
 Run SLAMSimInterface node separately:
 ```sh
 $ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
-$ rosrun slam_tracking_sim_interface slam_tracking_sim_interface
+$ rosrun slam_si slam_si
 ```
 
 Run with whole FSSIM workflow

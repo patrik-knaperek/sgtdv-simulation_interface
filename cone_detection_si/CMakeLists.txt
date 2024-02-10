@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(slam_sim_interface)
+project(cone_detection_si)
 
 add_compile_options(-std=c++14)
 
 find_package(catkin REQUIRED COMPONENTS
-  fsd_common_msgs
   roscpp
-  sgtdv_msgs
   std_msgs
+  sgtdv_msgs
 )
 
 ###################################
@@ -19,13 +18,14 @@ catkin_package(
 ###########
 ## Build ##
 ###########
+
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME} src/slam_sim_interface_node.cpp src/slam_sim_interface.cpp)
+add_executable(${PROJECT_NAME} src/cone_detection_si.cpp src/cone_detection_si_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-)
+ )

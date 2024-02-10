@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(path_tracking_sim_interface)
+project(control_si)
 
 add_compile_options(-std=c++14)
 
@@ -26,7 +26,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME} src/path_tracking_sim_interface_node.cpp src/path_tracking_sim_interface.cpp)
+add_executable(${PROJECT_NAME} src/control_si_node.cpp src/control_si.cpp)
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}

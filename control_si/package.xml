@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>path_tracking_sim_interface</name>
+  <name>control_si</name>
   <version>0.0.0</version>
-  <description>The path_tracking_sim_interface package</description>
+  <description>The Control Simulation Interface package</description>
 
   <maintainer email="pknaperek@gmail.com">Patrik Knaperek</maintainer>
 

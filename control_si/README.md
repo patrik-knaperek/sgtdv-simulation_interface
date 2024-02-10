@@ -1,4 +1,4 @@
-# **PathTrackingSimInterface package**
+# **ControlSimulationInterface package**
 
 ___
 
@@ -10,7 +10,7 @@ ___
 
 ___
 
-`pathTrackingSimInterface` node allows for controlling the FSSIM vehicle by commands from `pathTracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
+`control_si` node allows for controlling the FSSIM vehicle by commands from `pathTracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
 
 **[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
 
@@ -30,7 +30,7 @@ ___
 $ cd ${SGT_ROOT}/ros_implementation
 $ catkin clean
 $ source ${FSD_ROOT}/devel/setup.bash
-$ catkin build path_tracking_sim_interface
+$ catkin build control_si
 ```
 * compile with all packages needed for runnung with FSSIM
 ```sh
@@ -40,10 +40,10 @@ ${SGT_ROOT}/ros_implementation/build_sim.sh
 In `fsd_skeleton/src/fssim_interface/config/config.yaml` file set parameter `fsd/cmd` to `"sgt/control_command"`.
 
 ## Launch
-* run `pathTrackingSimInterface` node separately:
+* run `control_si` node separately:
 ```sh
 $ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
-$ rosrun path_tracking_sim_interface path_tracking_sim_interface
+$ rosrun control_si control_si
 ```
 * run with other nodes in FSSIM setup
 ```sh

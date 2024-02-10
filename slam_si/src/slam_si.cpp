@@ -3,23 +3,23 @@
 /* Authors: Patrik Knaperek
 /*****************************************************/
 
-#include "../include/slam_sim_interface.h"
+#include "../include/slam_si.h"
 
-SLAMSimInterface::SLAMSimInterface(ros::NodeHandle& nh) : 
+SlamSI::SlamSI(ros::NodeHandle& nh) : 
   /* ROS interface init */
   map_pub_(nh.advertise<sgtdv_msgs::ConeArr>("slam/map", 1, true)),
   pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("slam/pose", 1)),
   loop_close_pub_(nh.advertise<std_msgs::Empty>("slam/loop_closure", 1, true)),
   
-  map_sub_(nh.subscribe("estimation/slam/map", 1, &SLAMSimInterface::mapCallback, this)),
-  pose_sub_(nh.subscribe("estimation/slam/state", 1, &SLAMSimInterface::stateCallback, this)),
+  map_sub_(nh.subscribe("estimation/slam/map", 1, &SlamSI::mapCallback, this)),
+  pose_sub_(nh.subscribe("estimation/slam/state", 1, &SlamSI::stateCallback, this)),
 
   cones_blue_count_(0), cones_yellow_count_(0), map_ready_(false), loop_closure_(false)
 {
   ROS_INFO("Initialized");
 }
 
-void SLAMSimInterface::mapCallback(const fsd_common_msgs::Map::ConstPtr &msg)
+void SlamSI::mapCallback(const fsd_common_msgs::Map::ConstPtr &msg)
 {
   if(!map_ready_)
   {
@@ -51,7 +51,7 @@ void SLAMSimInterface::mapCallback(const fsd_common_msgs::Map::ConstPtr &msg)
     
 }
 
-void SLAMSimInterface::stateCallback(const fsd_common_msgs::CarState::ConstPtr &msg)
+void SlamSI::stateCallback(const fsd_common_msgs::CarState::ConstPtr &msg)
 {
   car_pose_.position.x = msg->car_state.x;
   car_pose_.position.y = msg->car_state.y;
@@ -65,7 +65,7 @@ void SLAMSimInterface::stateCallback(const fsd_common_msgs::CarState::ConstPtr &
   }
 }
 
-void SLAMSimInterface::addToMap(const fsd_common_msgs::Cone &coneMsg)
+void SlamSI::addToMap(const fsd_common_msgs::Cone &coneMsg)
 {
   sgtdv_msgs::Cone cone;
   cone.coords.x = coneMsg.position.x;
@@ -85,7 +85,7 @@ void SLAMSimInterface::addToMap(const fsd_common_msgs::Cone &coneMsg)
   map_.cones.emplace_back(cone);
 }
 
-int SLAMSimInterface::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones) const
+int SlamSI::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones) const
 {
   const auto closest_it  = std::min_element(cones.begin(), cones.end(),
                                           [&](const fsd_common_msgs::Cone &a,
@@ -117,7 +117,7 @@ int SLAMSimInterface::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> co
   return next_idx;
 }
 
-void SLAMSimInterface::actualizeMap()
+void SlamSI::actualizeMap()
 {
   const int cone_blue_lookahead_idx = findLookAheadConeIdx(cones_blue_);
   const int cone_yellow_lookahead_idx = findLookAheadConeIdx(cones_yellow_);
@@ -139,13 +139,13 @@ void SLAMSimInterface::actualizeMap()
   }
 }
 
-void SLAMSimInterface::loopClosure()
+void SlamSI::loopClosure()
 {
   loop_closure_ = true;
   loop_close_pub_.publish(std_msgs::Empty());
 }
 
-void SLAMSimInterface::publishMap() const
+void SlamSI::publishMap() const
 {
   if(map_ready_)
     map_pub_.publish(map_);

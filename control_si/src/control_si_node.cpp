@@ -3,15 +3,15 @@
 /* Authors: Patrik Knaperek
 /*****************************************************/
 
-#include "../include/fusion_sim_interface.h"
+#include "../include/control_si.h"
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "fusionSimInterface");
+  ros::init(argc, argv, "control_si");
   ros::NodeHandle handle;
-  
-  FusionSimInterface sim_interface(handle);
-  
+
+  ControlSI control_SI(handle);
+
   ros::spin();
 
   return 0;

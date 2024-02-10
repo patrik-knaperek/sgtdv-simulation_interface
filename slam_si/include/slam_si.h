@@ -19,11 +19,11 @@
 #include <sgtdv_msgs/CarVel.h>
 #include <sgtdv_msgs/Point2DArr.h>
 
-class SLAMSimInterface
+class SlamSI
 {
 public:
-  SLAMSimInterface(ros::NodeHandle& nh);
-  ~SLAMSimInterface() = default;
+  SlamSI(ros::NodeHandle& nh);
+  ~SlamSI() = default;
 
   /* Callbacks */
   void mapCallback(const fsd_common_msgs::Map::ConstPtr &msg);

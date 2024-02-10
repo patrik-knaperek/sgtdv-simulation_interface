@@ -18,11 +18,11 @@
 #include <sgtdv_msgs/CarVel.h>
 #include <sgtdv_msgs/Point2DArr.h>
 
-class PathTrackingSimInterface
+class ControlSI
 {
 public:
-  PathTrackingSimInterface(ros::NodeHandle& nh);
-  ~PathTrackingSimInterface() = default;
+  ControlSI(ros::NodeHandle& nh);
+  ~ControlSI() = default;
 
   /* Callbacks */
   void cmdCallback(const sgtdv_msgs::Control::ConstPtr &msg) const;

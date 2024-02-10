@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>fusion_sim_interface</name>
+  <name>cone_detection_si</name>
   <version>0.0.0</version>
-  <description>The fusion_sim_interface package</description>
+  <description>The Cone Detection Simulation Interface package</description>
 
   <maintainer email="pknaprek@gmail.com">Patrik Knaperek</maintainer>
 

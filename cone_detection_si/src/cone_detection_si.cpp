@@ -3,15 +3,15 @@
 /* Authors: Patrik Knaperek
 /*****************************************************/
 
-#include "../include/fusion_sim_interface.h"
+#include "../include/cone_detection_si.h"
 
-FusionSimInterface::FusionSimInterface(ros::NodeHandle& nh) :
+ConeDetectionSI::ConeDetectionSI(ros::NodeHandle& nh) :
   /* ROS interface init */
   camera_pub_(nh.advertise<sgtdv_msgs::ConeStampedArr>("camera_cones", 1)),
   lidar_pub_(nh.advertise<sgtdv_msgs::Point2DStampedArr>("lidar_cones", 1)),
   
-  camera_sub_(nh.subscribe("fssim/camera/cones", 1, &FusionSimInterface::cameraCallback, this)),
-  lidar_sub_(nh.subscribe("fssim/lidar/cones", 1, &FusionSimInterface::lidarCallback, this))
+  camera_sub_(nh.subscribe("fssim/camera/cones", 1, &ConeDetectionSI::cameraCallback, this)),
+  lidar_sub_(nh.subscribe("fssim/lidar/cones", 1, &ConeDetectionSI::lidarCallback, this))
 
 #ifdef SGT_DEBUG_STATE
   , lidar_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("lidar_cone_detection_debug_state", 2))
@@ -20,7 +20,7 @@ FusionSimInterface::FusionSimInterface(ros::NodeHandle& nh) :
 {   
 }
 
-void FusionSimInterface::lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const
+void ConeDetectionSI::lidarCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const
 {   
 #ifdef SGT_DEBUG_STATE
   sgtdv_msgs::DebugState state;
@@ -58,7 +58,7 @@ void FusionSimInterface::lidarCallback(const sensor_msgs::PointCloud2::ConstPtr 
 #endif
 }
 
-void FusionSimInterface::cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const
+void ConeDetectionSI::cameraCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) const
 {
 #ifdef SGT_DEBUG_STATE
   sgtdv_msgs::DebugState state;

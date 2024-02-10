@@ -1,4 +1,4 @@
-# **FusionSimInterface package**
+# **ConeDetectionSimulationInterface package**
 
 ___
 
@@ -10,7 +10,7 @@ ___
 
 ___
 
-`fusionSimInterface` node converts cone detection topics from FSSIM into SGT topics.
+`cone_detection_si` node converts cone detection topics from FSSIM into SGT topics.
 
 **[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
 
@@ -28,7 +28,7 @@ ___
 $ cd ${SGT_ROOT}/ros_implementation
 $ catkin clean
 $ source ${FSD_ROOT}/devel/setup.bash
-$ catkin build fusion_sim_interface
+$ catkin build cone_detection_si
 ```
 * compile with all packages needed for runnung with FSSIM
 ```sh
@@ -38,10 +38,10 @@ $ ${SGT_ROOT}/ros_implementation/build_sim.sh
 * `${FSD_ROOT}/src/fssim_interface/fssim_config/sensors/sensors_1.yaml` : set parameters of generated detections
 
 ## Launch
-* run `fusionSimInterface` node separately:
+* run `cone_detection_si` node separately:
 ```sh
 $ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
-$ rosrun fusion_sim_interface fusion_sim_interface
+$ rosrun cone_detection_si cone_detection_si
 ```
 * run with other nodes in FSSIM setup
 ```sh
