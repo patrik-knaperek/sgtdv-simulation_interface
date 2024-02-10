@@ -22,18 +22,8 @@
 class SLAMSimInterface
 {
 public:
-  SLAMSimInterface();
+  SLAMSimInterface(ros::NodeHandle& nh);
   ~SLAMSimInterface() = default;
-
-  // Setters
-  void setPublishers(const ros::Publisher &map_pub, const ros::Publisher &pose_pub
-                      , const ros::Publisher &loop_close_pub/*, const ros::Publisher &velPub*/)
-  {
-    map_pub_ = map_pub;
-    pose_pub_ = pose_pub;
-    loop_close_pub_ = loop_close_pub;
-    //m_velocityPublisher = velPub;
-  };
 
   // Callbacks
   void mapCallback(const fsd_common_msgs::Map::ConstPtr &msg);
@@ -51,8 +41,14 @@ private:
   int findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones);
   void actualizeMap();
   void loopClosure();
+  
+  ros::Publisher map_pub_;
+  ros::Publisher pose_pub_;
+  ros::Publisher loop_close_pub_;
+  ros::Subscriber map_sub_;
+  ros::Subscriber pose_sub_;
+
   std::vector<fsd_common_msgs::Cone> cones_blue_, cones_yellow_;
-  ros::Publisher map_pub_, pose_pub_, loop_close_pub_/*, m_velocityPublisher*/;
 
   sgtdv_msgs::ConeArr map_;
   sgtdv_msgs::CarPose car_pose_;

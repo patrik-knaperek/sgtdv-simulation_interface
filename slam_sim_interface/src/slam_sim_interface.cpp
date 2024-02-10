@@ -5,8 +5,16 @@
 
 #include "../include/slam_sim_interface.h"
 
-SLAMSimInterface::SLAMSimInterface()
-  : cones_blue_count_(0), cones_yellow_count_(0), map_ready_(false),  loop_closure_(false)
+SLAMSimInterface::SLAMSimInterface(ros::NodeHandle& nh) : 
+  /* ROS interface init */
+  map_pub_(nh.advertise<sgtdv_msgs::ConeArr>("slam/map", 1, true)),
+  pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("slam/pose", 1)),
+  loop_close_pub_(nh.advertise<std_msgs::Empty>("slam/loop_closure", 1, true)),
+  
+  map_sub_(nh.subscribe("estimation/slam/map", 1, &SLAMSimInterface::mapCallback, this)),
+  pose_sub_(nh.subscribe("estimation/slam/state", 1, &SLAMSimInterface::stateCallback, this)),
+
+  cones_blue_count_(0), cones_yellow_count_(0), map_ready_(false), loop_closure_(false)
 {
   ROS_INFO("Initialized");
 }
@@ -56,13 +64,6 @@ void SLAMSimInterface::stateCallback(const fsd_common_msgs::CarState::ConstPtr &
   {
     actualizeMap();
   }
-    
-  /*sgtdv_msgs::CarVelPtr carVel(new sgtdv_msgs::CarVel);
-
-  carVel->speed = msg->car_state_dt.car_state_dt.x;
-  carVel->yawRate = msg->car_state_dt.car_state_dt.theta;
-
-  m_velocityPublisher.publish(carVel);*/
 }
 
 void SLAMSimInterface::addToMap(const fsd_common_msgs::Cone &coneMsg)
