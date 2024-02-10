@@ -20,26 +20,26 @@
 
 class PathTrackingSimInterface
 {
-    public:
-        PathTrackingSimInterface(ros::NodeHandle& nh);
-        ~PathTrackingSimInterface() = default;
+public:
+  PathTrackingSimInterface(ros::NodeHandle& nh);
+  ~PathTrackingSimInterface() = default;
 
-        /* Callbacks */
-        void cmdCallback(const sgtdv_msgs::Control::ConstPtr &msg) const;
-        void trajectoryCallback(const geometry_msgs::PolygonStamped::ConstPtr &msg) const;
-        void poseCallback(const fsd_common_msgs::CarState::ConstPtr &msg) const;
-        void velocityCallback(const fsd_common_msgs::CarStateDt::ConstPtr &msg) const;
+  /* Callbacks */
+  void cmdCallback(const sgtdv_msgs::Control::ConstPtr &msg) const;
+  void trajectoryCallback(const geometry_msgs::PolygonStamped::ConstPtr &msg) const;
+  void poseCallback(const fsd_common_msgs::CarState::ConstPtr &msg) const;
+  void velocityCallback(const fsd_common_msgs::CarStateDt::ConstPtr &msg) const;
 
-    private:
-        /* SGT-DV --> FSSIM */
-        ros::Publisher cmd_pub_;
+private:
+  /* SGT-DV --> FSSIM */
+  ros::Publisher cmd_pub_;
 
-        /* FSSIM --> SGT-DV */
-        ros::Publisher trajectory_pub_;
-        ros::Publisher pose_pub_;
-        ros::Publisher velocity_pub_;
-        ros::Subscriber cmd_sub_;
-        ros::Subscriber trajectory_sub_;
-        ros::Subscriber pose_sub_;
-        ros::Subscriber velocity_sub_;
+  /* FSSIM --> SGT-DV */
+  ros::Publisher trajectory_pub_;
+  ros::Publisher pose_pub_;
+  ros::Publisher velocity_pub_;
+  ros::Subscriber cmd_sub_;
+  ros::Subscriber trajectory_sub_;
+  ros::Subscriber pose_sub_;
+  ros::Subscriber velocity_sub_;
 };

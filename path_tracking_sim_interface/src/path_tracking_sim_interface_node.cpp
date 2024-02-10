@@ -7,12 +7,12 @@
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "pathTrackingSimInterface");
-    ros::NodeHandle handle;
+  ros::init(argc, argv, "pathTrackingSimInterface");
+  ros::NodeHandle handle;
 
-    PathTrackingSimInterface sim_interface(handle);
+  PathTrackingSimInterface sim_interface(handle);
 
-    ros::spin();
+  ros::spin();
 
-    return 0;
+  return 0;
 }
