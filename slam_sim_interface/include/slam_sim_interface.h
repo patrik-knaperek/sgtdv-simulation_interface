@@ -25,20 +25,18 @@ public:
   SLAMSimInterface(ros::NodeHandle& nh);
   ~SLAMSimInterface() = default;
 
-  // Callbacks
+  /* Callbacks */
   void mapCallback(const fsd_common_msgs::Map::ConstPtr &msg);
   void stateCallback(const fsd_common_msgs::CarState::ConstPtr &msg);
 
-  void publishMap();
+  void publishMap() const;
 
 private:
   static constexpr float LOOK_AHEAD_DISTANCE = 15.0;
 
-  // SGT-DV --> FSSIM
-
-  // FSSIM --> SGT-DV
+  /* FSSIM --> SGT-DV */
   void addToMap(const fsd_common_msgs::Cone &cone);
-  int findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones);
+  int findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones) const;
   void actualizeMap();
   void loopClosure();
   

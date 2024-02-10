@@ -27,24 +27,23 @@ void SLAMSimInterface::mapCallback(const fsd_common_msgs::Map::ConstPtr &msg)
   }
 
   map_.cones.reserve(msg->cone_blue.size() + msg->cone_yellow.size() + msg->cone_orange.size());
-  
 
   cones_blue_ = msg->cone_blue;
   cones_yellow_ = msg->cone_yellow;
 
-  for(auto &i : msg->cone_orange)
+  for(const auto &i : msg->cone_orange)
   {
     addToMap(i);
   }
 
   if(loop_closure_)
   {
-    for(auto &i : msg->cone_blue)
+    for(const auto &i : msg->cone_blue)
     {
       addToMap(i);
     }
 
-    for(auto &i : msg->cone_yellow)
+    for(const auto &i : msg->cone_yellow)
     {
       addToMap(i);
     }
@@ -86,7 +85,7 @@ void SLAMSimInterface::addToMap(const fsd_common_msgs::Cone &coneMsg)
   map_.cones.emplace_back(cone);
 }
 
-int SLAMSimInterface::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones)
+int SLAMSimInterface::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones) const
 {
   const auto closest_it  = std::min_element(cones.begin(), cones.end(),
                                           [&](const fsd_common_msgs::Cone &a,
@@ -120,8 +119,8 @@ int SLAMSimInterface::findLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> co
 
 void SLAMSimInterface::actualizeMap()
 {
-  int cone_blue_lookahead_idx = findLookAheadConeIdx(cones_blue_);
-  int cone_yellow_lookahead_idx = findLookAheadConeIdx(cones_yellow_);
+  const int cone_blue_lookahead_idx = findLookAheadConeIdx(cones_blue_);
+  const int cone_yellow_lookahead_idx = findLookAheadConeIdx(cones_yellow_);
 
   while(cones_blue_count_ < cone_blue_lookahead_idx && cones_blue_count_ < cones_blue_.size())
   {
@@ -146,7 +145,7 @@ void SLAMSimInterface::loopClosure()
   loop_close_pub_.publish(std_msgs::Empty());
 }
 
-void SLAMSimInterface::publishMap()
+void SLAMSimInterface::publishMap() const
 {
   if(map_ready_)
     map_pub_.publish(map_);
