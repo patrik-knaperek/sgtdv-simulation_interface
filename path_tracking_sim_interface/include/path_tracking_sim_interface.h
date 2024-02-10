@@ -21,18 +21,8 @@
 class PathTrackingSimInterface
 {
     public:
-        PathTrackingSimInterface();
+        PathTrackingSimInterface(ros::NodeHandle& nh);
         ~PathTrackingSimInterface() = default;
-
-        // Setters
-        void setPublishers(const ros::Publisher &cmdPub, const ros::Publisher &trajectoryPub, 
-                           const ros::Publisher &posePub, const ros::Publisher &velPub)
-        {
-            cmd_pub_ = cmdPub;
-            trajectory_pub_ = trajectoryPub;
-            pose_pub_ = posePub;
-            velocity_pub_ = velPub;
-        };
 
         /* Callbacks */
         void cmdCallback(const sgtdv_msgs::Control::ConstPtr &msg) const;
@@ -48,4 +38,8 @@ class PathTrackingSimInterface
         ros::Publisher trajectory_pub_;
         ros::Publisher pose_pub_;
         ros::Publisher velocity_pub_;
+        ros::Subscriber cmd_sub_;
+        ros::Subscriber trajectory_sub_;
+        ros::Subscriber pose_sub_;
+        ros::Subscriber velocity_sub_;
 };
