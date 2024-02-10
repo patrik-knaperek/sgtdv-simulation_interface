@@ -26,11 +26,11 @@ class SLAMSimInterface
         ~SLAMSimInterface() = default;
 
         // Setters
-        void setPublishers(const ros::Publisher &mapPub, const ros::Publisher &posePub
-                            , const ros::Publisher &loopClosePub/*, const ros::Publisher &velPub*/)
+        void setPublishers(/*const ros::Publisher &mapPub, const ros::Publisher &posePub
+                            , */const ros::Publisher &loopClosePub/*, const ros::Publisher &velPub*/)
         {
-            m_mapPublisher = mapPub;
-            m_posePublisher = posePub;
+            // m_mapPublisher = mapPub;
+            // m_posePublisher = posePub;
             m_loopClosePub = loopClosePub;
             //m_velocityPublisher = velPub;
         };
