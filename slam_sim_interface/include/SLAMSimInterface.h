@@ -1,6 +1,6 @@
 /*****************************************************/
-//Organization: Stuba Green Team
-//Authors: Patrik Knaperek
+/* Organization: Stuba Green Team
+/* Authors: Patrik Knaperek
 /*****************************************************/
 
 #pragma once
@@ -21,42 +21,42 @@
 
 class SLAMSimInterface
 {
-   public:
-        SLAMSimInterface();
-        ~SLAMSimInterface() = default;
+public:
+  SLAMSimInterface();
+  ~SLAMSimInterface() = default;
 
-        // Setters
-        void setPublishers(const ros::Publisher &mapPub, const ros::Publisher &posePub
-                            , const ros::Publisher &loopClosePub/*, const ros::Publisher &velPub*/)
-        {
-            m_mapPublisher = mapPub;
-            m_posePublisher = posePub;
-            m_loopClosePub = loopClosePub;
-            //m_velocityPublisher = velPub;
-        };
+  // Setters
+  void setPublishers(const ros::Publisher &mapPub, const ros::Publisher &posePub
+                      , const ros::Publisher &loopClosePub/*, const ros::Publisher &velPub*/)
+  {
+    m_mapPublisher = mapPub;
+    m_posePublisher = posePub;
+    m_loopClosePub = loopClosePub;
+    //m_velocityPublisher = velPub;
+  };
 
-        // Callbacks
-        void DoMap(const fsd_common_msgs::Map::ConstPtr &msg);
-        void DoState(const fsd_common_msgs::CarState::ConstPtr &msg);
+  // Callbacks
+  void DoMap(const fsd_common_msgs::Map::ConstPtr &msg);
+  void DoState(const fsd_common_msgs::CarState::ConstPtr &msg);
 
-        void PublishMap();
+  void PublishMap();
 
-    private:
-        static constexpr float LOOK_AHEAD_DISTANCE = 15.0;
+private:
+  static constexpr float LOOK_AHEAD_DISTANCE = 15.0;
 
-        // SGT-DV --> FSSIM
+  // SGT-DV --> FSSIM
 
-        // FSSIM --> SGT-DV
-        void AddToMap(const fsd_common_msgs::Cone &cone);
-        int FindLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones);
-        void ActualizeMap();
-        void LoopClosure();
-        std::vector<fsd_common_msgs::Cone> m_conesBlue, m_conesYellow;
-        ros::Publisher m_mapPublisher, m_posePublisher, m_loopClosePub/*, m_velocityPublisher*/;
+  // FSSIM --> SGT-DV
+  void AddToMap(const fsd_common_msgs::Cone &cone);
+  int FindLookAheadConeIdx(std::vector<fsd_common_msgs::Cone> cones);
+  void ActualizeMap();
+  void LoopClosure();
+  std::vector<fsd_common_msgs::Cone> m_conesBlue, m_conesYellow;
+  ros::Publisher m_mapPublisher, m_posePublisher, m_loopClosePub/*, m_velocityPublisher*/;
 
-        sgtdv_msgs::ConeArr m_map;
-        sgtdv_msgs::CarPose m_carPose;
+  sgtdv_msgs::ConeArr m_map;
+  sgtdv_msgs::CarPose m_carPose;
 
-        int m_conesBlueCount, m_conesYellowCount;
-        bool m_mapReady, m_loopClosure;
+  int m_conesBlueCount, m_conesYellowCount;
+  bool m_mapReady, m_loopClosure;
 };
