@@ -8,6 +8,7 @@ ___
 
 **Objective:** Interface between AMZ FSSIM and SGT-DV workspaces to substitue SLAM algorithm for Path Planning testing.
 ___
+
 FSSIM SLAM node latches the whole map on the `estimation/slam/map` topic. This node can simulate behavior of SLAM in the first lap, when the map is extended and published gradually as the vehicle is crossing the track. After the first lap, it detects loop closure and publishes the whole map.
 
 If only global navigation is being tested, set the `map_ready_` and `loop_closure_` parameters to `true`.
@@ -23,11 +24,16 @@ If only global navigation is being tested, set the `map_ready_` and `loop_closur
 * `/estimation/slam/state [fsd_common_msgs::CarState] → /slam_pose [sgtdv_msgs::CarPose], velocity_estimate [sgtdv_msgs::CarVel]`
 
 ## Compilation
+* compile standalone
 ```sh
 $ cd ${SGT_ROOT}/ros_implementation
 $ catkin clean
 $ source ${FSD_ROOT}/devel/setup.bash
 $ catkin build slam_sim_interface
+```
+* compile fith other packages for running with FSSIM
+```sh
+$ ${SGT_ROOT}/build_sim.sh
 ```
 
 ## Launch
@@ -42,4 +48,11 @@ Run SLAMSimInterface node separately:
 $ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
 $ rosrun slam_tracking_sim_interface slam_tracking_sim_interface
 ```
+
+Run with whole FSSIM workflow
+```sh
+$ source ${SGT_ROOT}/devel/setup.bash
+$ roslaunch master trackdrive_sim.launch
+```
+
 For launching along with PathPlanning node instead, check [this README](../../path_planning/README.md).
