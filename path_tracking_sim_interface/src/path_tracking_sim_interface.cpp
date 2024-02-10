@@ -35,7 +35,7 @@ void PathTrackingSimInterface::trajectoryCallback(const geometry_msgs::PolygonSt
   trajectory_msg.points.reserve(msg->polygon.points.size());
 
   sgtdv_msgs::Point2D point;
-  for(auto msg_point : msg->polygon.points)
+  for(const auto& msg_point : msg->polygon.points)
   {
     point.x = msg_point.x;
     point.y = msg_point.y;
@@ -59,7 +59,7 @@ void PathTrackingSimInterface::poseCallback(const fsd_common_msgs::CarState::Con
 void PathTrackingSimInterface::velocityCallback(const fsd_common_msgs::CarStateDt::ConstPtr &msg) const
 {
   sgtdv_msgs::CarVel car_vel_msg;
-  
+
   car_vel_msg.speed = msg->car_state_dt.x;
   car_vel_msg.yaw_rate = msg->car_state_dt.theta;
 

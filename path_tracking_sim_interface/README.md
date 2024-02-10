@@ -6,9 +6,11 @@ ___
 
 **Authors:** Patrik Knaperek
 
-**Objective:** Interface between AMZ FSSIM workspace and SGT-DV workspace for independent path tracking testing.
+**Objective:** Interface between AMZ FSSIM workspace and SGT-DV workspace for state and command topics.
 
 ___
+
+`pathTrackingSimInterface` node allows for controlling the FSSIM vehicle by commands from `pathTracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
 
 **[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
 
@@ -23,30 +25,41 @@ ___
 * `pathtracking_commands [sgtdv_msgs::Control] → sgt/control_command [fsd_common_msgs::ControlCommand]`
 
 ## Compilation
-```
-$ cd <path_to_SGT_workspace>/ros_implementation
+* compile standalone
+```sh
+$ cd ${SGT_ROOT}/ros_implementation
 $ catkin clean
-$ source <path_to_fsd_skeleton>/fsd_skeleton/devel/setup.bash
+$ source ${FSD_ROOT}/devel/setup.bash
 $ catkin build path_tracking_sim_interface
+```
+* compile with all packages needed for runnung with FSSIM
+```sh
+${SGT_ROOT}/ros_implementation/build_sim.sh
 ```
 ## Setup
 In `fsd_skeleton/src/fssim_interface/config/config.yaml` file set parameter `fsd/cmd` to `"sgt/control_command"`.
 
 ## Launch
-Run pathTrackingSimInterface node separately:
-```
-$ source <path_to_SGT_workspace>/ros_implementation/devel/setup.bash
+* run `pathTrackingSimInterface` node separately:
+```sh
+$ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
 $ rosrun path_tracking_sim_interface path_tracking_sim_interface
 ```
+* run with other nodes in FSSIM setup
+```sh
+$ source ${SGT_ROOT}/ros_implementation/devel/setup.bash
+$ roslaunch master trackdrive_sim.launch
+```
+
 Launch FSSIM:
 
-```
-$ source <path_to_fsd_skeleton>/fsd_skeleton/devel/setup.bash
+```sh
+$ source ${FSD_ROOT}/devel/setup.bash
 $ roslaunch fssim_interface fssim.launch
 ```
 In new terminal:
-```
-$ source <path_to_fsd_skeleton>/fsd_skeleton/devel/setup.bash
+```sh
+$ source ${SGT_ROOT}/devel/setup.bash
 $ roslaunch control_meta trackdrive.launch
 ```
 
