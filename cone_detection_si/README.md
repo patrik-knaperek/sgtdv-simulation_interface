@@ -12,7 +12,7 @@ ___
 
 `cone_detection_si` node converts cone detection topics from FSSIM into SGT topics.
 
-**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
+**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/master/README.md)**
 
 ### Related packages
 * [`fusion`](../../fusion/README.md)

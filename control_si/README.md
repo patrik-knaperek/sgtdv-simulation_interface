@@ -12,7 +12,7 @@ ___
 
 `control_si` node allows for controlling the FSSIM vehicle by commands from `pathTracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
 
-**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
+**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/master/README.md)**
 
 ### Related packages
 * `path_tracking` (SGT-DV)

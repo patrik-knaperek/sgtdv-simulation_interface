@@ -13,7 +13,7 @@ FSSIM SLAM node latches the whole map on the `estimation/slam/map` topic. This n
 
 If only global navigation is being tested, set the `map_ready_` and `loop_closure_` parameters to `true`.
 
-**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/sgt-noetic-devel/SGT-DV_install_man.md)**
+**[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/master/README.md)**
 
 ### Related packages
 * [`path_planning`](../../path_planning/README.md) (SGT-DV)
