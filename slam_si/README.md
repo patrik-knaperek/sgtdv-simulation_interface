@@ -11,7 +11,15 @@ ___
 
 FSSIM SLAM node latches the whole map on the `estimation/slam/map` topic. This node can simulate behavior of SLAM in the first lap, when the map is extended and published gradually as the vehicle is crossing the track. After the first lap, it detects loop closure and publishes the whole map.
 
-If only global navigation is being tested, set the `map_ready_` and `loop_closure_` parameters to `true`.
+*Note: If only global navigation is being tested, set the `map_ready_` and `loop_closure_` initial value to `true`.*
+```cpp
+SlamSI::SlamSI(ros::NodeHandle& nh) :
+  ...
+  cones_blue_count_(0), cones_yellow_count_(0), map_ready_(false), loop_closure_(false)
+{
+ ...
+}
+```
 
 **[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/master/README.md)**
 

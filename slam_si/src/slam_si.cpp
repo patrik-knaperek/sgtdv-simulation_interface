@@ -5,7 +5,7 @@
 
 #include "../include/slam_si.h"
 
-SlamSI::SlamSI(ros::NodeHandle& nh) : 
+SlamSI::SlamSI(ros::NodeHandle& nh) :
   /* ROS interface init */
   map_pub_(nh.advertise<sgtdv_msgs::ConeArr>("slam/map", 1, true)),
   pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("slam/pose", 1)),
@@ -16,7 +16,6 @@ SlamSI::SlamSI(ros::NodeHandle& nh) :
 
   cones_blue_count_(0), cones_yellow_count_(0), map_ready_(false), loop_closure_(false)
 {
-  ROS_INFO("Initialized");
 }
 
 void SlamSI::mapCallback(const fsd_common_msgs::Map::ConstPtr &msg)
