@@ -19,8 +19,8 @@ ___
 * [`calibration`](../../calibration/README.md)
 
 ### Topic conversions
-* `fssim/camera/cones [sensor_msgs::PointCloud2] → camera_cones [sgtdv_msgs::ConeStampedArr]`
-* `fssim/lidar/cones [sensor_msgs::PointCloud2] → lidar_cones [sgtdv_msgs::Point2DStampedArr]` 
+* `fssim/camera/cones [sensor_msgs::PointCloud2] → camera/cones [sgtdv_msgs::ConeStampedArr]`
+* `fssim/lidar/cones [sensor_msgs::PointCloud2] → lidar/cones [sgtdv_msgs::Point2DStampedArr]` 
 
 ## Compilation
 * compile standalone

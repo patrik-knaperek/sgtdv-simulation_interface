@@ -28,8 +28,8 @@ SlamSI::SlamSI(ros::NodeHandle& nh) :
 * `slam_slam` (AMZ)
 
 ### Topic conversions
-* `/estimation/slam/map [fsd_common_msgs::Map] → /slam_map [sgtdv_msgs::ConeArr]`
-* `/estimation/slam/state [fsd_common_msgs::CarState] → /slam_pose [sgtdv_msgs::CarPose], velocity_estimate [sgtdv_msgs::CarVel]`
+* `/estimation/slam/map [fsd_common_msgs::Map] → /slam/map [sgtdv_msgs::ConeArr]`
+* `/estimation/slam/state [fsd_common_msgs::CarState] → /slam/pose [sgtdv_msgs::CarPose], odometry/velocity [sgtdv_msgs::CarVel]`
 
 ## Compilation
 * compile standalone

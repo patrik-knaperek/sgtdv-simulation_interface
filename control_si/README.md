@@ -10,7 +10,7 @@ ___
 
 ___
 
-`control_si` node allows for controlling the FSSIM vehicle by commands from `pathTracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
+`control_si` node allows for controlling the FSSIM vehicle by commands from `path_tracking` node and provides conversion of state topics (pose and velocity) in the other direction for feedback.
 
 **[Requires AMZ FSD skeleton & FSSIM installed](https://gitlab.com/sgt-driverless/simulation/fsd_skeleton/-/blob/master/README.md)**
 
@@ -19,10 +19,10 @@ ___
 * `control_pure_pursuit` (AMZ)
 
 ### Topic conversions
-* `/control/pure_pursuit/center_line [geometry_msgs::PolygonStamped] → pathplanning_trajectory [sgtdv_msgs::Point2DArr]`
-* `/estimation/slam/state [fsd_common_msgs::CarState] → pose_estimate [sgtdv_msgs::CarPose]` 
-* `/estimation/velocity_estimation/velocity_estimation [fsd_common_msgs::CarStateDt] → /velocity_estimate [sgtdv_msgs::CarVel]`
-* `pathtracking_commands [sgtdv_msgs::Control] → sgt/control_command [fsd_common_msgs::ControlCommand]`
+* `/control/pure_pursuit/center_line [geometry_msgs::PolygonStamped] → path_planning/trajectory [sgtdv_msgs::Point2DArr]`
+* `/estimation/slam/state [fsd_common_msgs::CarState] → odometry/pose [sgtdv_msgs::CarPose]` 
+* `/estimation/velocity_estimation/velocity_estimation [fsd_common_msgs::CarStateDt] → odometry/velocity [sgtdv_msgs::CarVel]`
+* `path_tracking/cmd [sgtdv_msgs::Control] → sgt/control_command [fsd_common_msgs::ControlCommand]`
 
 ## Compilation
 * compile standalone
@@ -63,4 +63,4 @@ $ source ${SGT_ROOT}/devel/setup.bash
 $ roslaunch control_meta trackdrive.launch
 ```
 
-For launching along with pathTracking node, check [this README](../../path_tracking/README.md).
+For launching along with `path_tracking` node, check [this README](../../path_tracking/README.md).

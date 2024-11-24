@@ -7,8 +7,8 @@
 
 SlamSI::SlamSI(ros::NodeHandle& nh) :
   /* ROS interface init */
-  map_pub_(nh.advertise<sgtdv_msgs::ConeArr>("slam/map", 1, true)),
-  pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("slam/pose", 1)),
+  // map_pub_(nh.advertise<sgtdv_msgs::ConeArr>("slam/map", 1, true)),
+  // pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("slam/pose", 1)),
   loop_close_pub_(nh.advertise<std_msgs::Empty>("slam/loop_closure", 1, true)),
   
   map_sub_(nh.subscribe("estimation/slam/map", 1, &SlamSI::mapCallback, this)),

@@ -8,11 +8,11 @@
 ControlSI::ControlSI(ros::NodeHandle& nh) :
   /* ROS interface init */
   cmd_pub_(nh.advertise<fsd_common_msgs::ControlCommand>("sgt/control_command", 1)), // this topic name has to be set in fssim_interface/config/config.yaml as parameter fsd/cmd to obtain SGT control commands by FSSIM
-  trajectory_pub_(nh.advertise<sgtdv_msgs::Point2DArr>("pathplanning_trajectory", 1, true)),
-  pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("pose_estimate", 1)),
-  velocity_pub_(nh.advertise<sgtdv_msgs::CarVel>("velocity_estimate", 1)),
+  trajectory_pub_(nh.advertise<sgtdv_msgs::Point2DArr>("path_planning/trajectory", 1, true)),
+  pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("odometry/pose", 1)),
+  velocity_pub_(nh.advertise<sgtdv_msgs::CarVel>("odometry/velocity", 1)),
   
-  cmd_sub_(nh.subscribe("pathtracking_commands", 1, &ControlSI::cmdCallback, this)),
+  cmd_sub_(nh.subscribe("path_tracking/cmd", 1, &ControlSI::cmdCallback, this)),
   trajectory_sub_(nh.subscribe("control/pure_pursuit/center_line", 1, &ControlSI::trajectoryCallback, this)),
   pose_sub_(nh.subscribe("estimation/slam/state", 1, &ControlSI::poseCallback, this)),
   velocity_sub_(nh.subscribe("estimation/velocity_estimation/velocity_estimation", 1, &ControlSI::velocityCallback, this))

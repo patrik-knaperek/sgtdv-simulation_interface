@@ -7,15 +7,15 @@
 
 ConeDetectionSI::ConeDetectionSI(ros::NodeHandle& nh) :
   /* ROS interface init */
-  camera_pub_(nh.advertise<sgtdv_msgs::ConeStampedArr>("camera_cones", 1)),
-  lidar_pub_(nh.advertise<sgtdv_msgs::Point2DStampedArr>("lidar_cones", 1)),
+  camera_pub_(nh.advertise<sgtdv_msgs::ConeStampedArr>("camera/cones", 1)),
+  lidar_pub_(nh.advertise<sgtdv_msgs::Point2DStampedArr>("lidar/cones", 1)),
   
   camera_sub_(nh.subscribe("fssim/camera/cones", 1, &ConeDetectionSI::cameraCallback, this)),
   lidar_sub_(nh.subscribe("fssim/lidar/cones", 1, &ConeDetectionSI::lidarCallback, this))
 
 #ifdef SGT_DEBUG_STATE
-  , lidar_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("lidar_cone_detection_debug_state", 2))
-  , camera_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("camera_cone_detection_debug_state", 2))
+  , lidar_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("lidar/debug_state", 2))
+  , camera_vis_debug_pub_(nh.advertise<sgtdv_msgs::DebugState>("camera/debug_state", 2))
 #endif
 {   
 }
