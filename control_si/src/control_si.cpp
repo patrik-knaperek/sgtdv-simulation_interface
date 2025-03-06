@@ -3,12 +3,18 @@
 /* Authors: Patrik Knaperek
 /*****************************************************/
 
+/* SGT-DV */
+#include <sgtdv_msgs/Trajectory.h>
+#include <sgtdv_msgs/CarPose.h>
+#include <sgtdv_msgs/CarVel.h>
+
+/* Header */
 #include "../include/control_si.h"
 
 ControlSI::ControlSI(ros::NodeHandle& nh) :
   /* ROS interface init */
   cmd_pub_(nh.advertise<fsd_common_msgs::ControlCommand>("sgt/control_command", 1)), // this topic name has to be set in fssim_interface/config/config.yaml as parameter fsd/cmd to obtain SGT control commands by FSSIM
-  trajectory_pub_(nh.advertise<sgtdv_msgs::Point2DArr>("path_planning/trajectory", 1, true)),
+  trajectory_pub_(nh.advertise<sgtdv_msgs::Trajectory>("path_planning/trajectory", 1, true)),
   pose_pub_(nh.advertise<sgtdv_msgs::CarPose>("odometry/pose", 1)),
   velocity_pub_(nh.advertise<sgtdv_msgs::CarVel>("odometry/velocity", 1)),
   

@@ -14,8 +14,6 @@
 
 /* SGT-DV */
 #include <sgtdv_msgs/Control.h>
-#include <sgtdv_msgs/CarPose.h>
-#include <sgtdv_msgs/CarVel.h>
 #include <sgtdv_msgs/Point2DArr.h>
 
 class ControlSI
